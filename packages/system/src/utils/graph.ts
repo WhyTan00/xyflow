@@ -380,11 +380,11 @@ export async function fitViewport<
   { nodes, width, height, panZoom, minZoom, maxZoom }: Params,
   options?: Omit<Options, 'nodes' | 'includeHiddenNodes'>
 ): Promise<boolean> {
-  if (nodes.size === 0) {
+  const nodesToFit = getFitViewNodes(nodes, options);
+
+  if (nodesToFit.size === 0) {
     return true;
   }
-
-  const nodesToFit = getFitViewNodes(nodes, options);
 
   const bounds = getInternalNodesBounds(nodesToFit);
 
